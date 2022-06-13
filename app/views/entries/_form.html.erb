@@ -33,12 +33,12 @@
 
   <div class="my-5">
     <%= form.label :entry_type %>
-    <%= form.select :entry_type, @entry_types.map {|key, value| key}, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+    <%= form.select :entry_type, @entry_types, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
   </div>
 
   <div class="my-5">
     <%= form.label :collection_id %>
-    <%= form.text_field :collection_id, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+    <%= form.select :collection_id, Collection.all.map {|c| [c.name, c.id]}, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
   </div>
 
   <div class="inline">

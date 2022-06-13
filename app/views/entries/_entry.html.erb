@@ -21,12 +21,12 @@
 
   <p class="my-5">
     <strong class="block font-medium mb-1">Entry type:</strong>
-    <%= entry.entry_type %>
+    <%= format_entry_type(entry.entry_type) %>
   </p>
 
   <p class="my-5">
     <strong class="block font-medium mb-1">Collection:</strong>
-    <%= entry.collection_id %>
+    <%= entry.collection.name %>
   </p>
 
   <% if action_name != "show" %>

@@ -3,12 +3,14 @@
     <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
   <% end %>
 
-  <div class="flex justify-between items-center">
-    <h1 class="font-bold text-4xl">Entries</h1>
-    <%= link_to 'New entry', new_entry_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
-  </div>
-
   <div id="entries" class="min-w-full">
-    <%= render @entries %>
+    <ul>
+      <% @entries.each do |entry|  %>
+        <li>
+          <%= link_to "#{symbol_for_entry_type(entry.entry_type)} #{entry.title}", entry_path(entry) %>
+        </li>
+        <br>
+      <% end %>
+    </ul>
   </div>
 </div>
