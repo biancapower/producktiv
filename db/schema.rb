@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_06_13_101849) do
+ActiveRecord::Schema[7.0].define(version: 2022_06_13_102211) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -58,6 +58,15 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_13_101849) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "collections_tags", force: :cascade do |t|
+    t.bigint "collection_id", null: false
+    t.bigint "tag_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["collection_id"], name: "index_collections_tags_on_collection_id"
+    t.index ["tag_id"], name: "index_collections_tags_on_tag_id"
+  end
+
   create_table "entries", force: :cascade do |t|
     t.string "title"
     t.datetime "due_date"
@@ -67,6 +76,12 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_13_101849) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["collection_id"], name: "index_entries_on_collection_id"
+  end
+
+  create_table "tags", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -83,5 +98,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_13_101849) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "collections_tags", "collections"
+  add_foreign_key "collections_tags", "tags"
   add_foreign_key "entries", "collections"
 end
